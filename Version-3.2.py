@@ -59,6 +59,9 @@ class BookInventory:
         return current
 
     def remove_book(self, index):
+        if not self.head:
+            print("The book inventory is empty. Please add a book first before removing.")
+            return
         current = self.get_book_by_index(index)
         if current:
             if current == self.head:
@@ -181,17 +184,20 @@ def main():
                                     break
         
                             elif choice == '2':
-                                while True:
-                                    try:
-                                        index = input('Enter the number of the book to remove: ').strip()
-                                        if not index.isdigit():
-                                            print("Invalid input. Please enter a valid book number.")
-                                            continue
-                                        index = int(index)
-                                        inventory.remove_book(index)
-                                        break
-                                    except ValueError:
-                                        print("Invalid input. Please try again.")
+                                if not inventory.head:
+                                    print("The book inventory is empty. Please add a book first before removing.")
+                                else:
+                                    while True:
+                                        try:
+                                            index = input('Enter the number of the book to remove: ').strip()
+                                            if not index.isdigit():
+                                                print("Invalid input. Please enter a valid book number.")
+                                                continue
+                                            index = int(index)
+                                            inventory.remove_book(index)
+                                            break
+                                        except ValueError:
+                                            print("Invalid input. Please try again.")
         
                             elif choice == '3':
                                 while True:
