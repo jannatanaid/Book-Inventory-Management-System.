@@ -195,18 +195,19 @@ def main():
                         choice = input("\nEnter your choice: ")
 
                         if choice == '1':
-                            while True:
+                
                                 titles = input("Enter the titles of the book (separated by commas): ").strip().split(', ')
-                                if len(titles) > 3 or any(len(title.strip()) < 4 for title in titles):
+                                while len(titles) > 3 or any(len(title.strip()) < 4 for title in titles):
                                     print("Error: You must enter up to 3 titles, each at least 4 characters long.")
-                                    continue
+                                    titles = input("Enter the titles of the book (separated by commas): ").strip().split(', ')
                                 authors = input("Enter the authors of the book (separated by commas): ").strip().split(', ')
-                                if len(authors) > 3 or any(len(author.strip()) < 4 for author in authors):
+                                while len(authors) > 3 or any(len(author.strip()) < 4 for author in authors):
                                     print("Error: You must enter up to 3 authors, each at least 4 characters long.")
-                                    continue
+                                    authors = input("Enter the authors of the book (separated by commas): ").strip().split(', ')
+                                    
                                 inventory.add_book(titles, authors)
                                 print("Book added to the inventory.")
-                                break
+                                
 
                         elif choice == '2':
                             if not inventory.head:
@@ -233,13 +234,15 @@ def main():
                                     index = int(input('Enter the number of the book to replace: '))
                                     while True:
                                         new_titles = input("Enter the new titles of the book (separated by commas): ").strip().split(', ')
-                                        if len(new_titles) > 3 or any(len(title.strip()) < 4 for title in new_titles):
+                                        while len(new_titles) > 3 or any(len(title.strip()) < 4 for title in new_titles):
                                             print("Error: You must enter up to 3 titles, each at least 4 characters long.")
-                                            continue
+                                            new_titles = input("Enter the new titles of the book (separated by commas): ").strip().split(', ')
+                                            
                                         new_authors = input("Enter the new authors of the book (separated by commas): ").strip().split(', ')
-                                        if len(new_authors) > 3 or any(len(author.strip()) < 4 for author in new_authors):
+                                        while len(new_authors) > 3 or any(len(author.strip()) < 4 for author in new_authors):
                                             print("Error: You must enter up to 3 authors, each at least 4 characters long.")
-                                            continue
+                                            new_authors = input("Enter the new authors of the book (separated by commas): ").strip().split(', ')
+                                            
                                         inventory.replace_book(index, new_titles, new_authors)
                                         break
                                     break
